@@ -11,7 +11,7 @@ const getUserAuth = async (req, res) => {
     try {
         const method = req.query.method
         const user = JSON.parse(req.query.user)
-    
+        
         var auth
         switch (method) {
             case 'name':
@@ -23,6 +23,10 @@ const getUserAuth = async (req, res) => {
             case 'phone':
                 auth = await UsersAuth.findOne({  phoneNumber: user.phone })
                 break;
+            case 'id':
+                const {_id} = jwt.verify(user.hashedId, process.env.JWT_SECRET)
+                auth = await UsersAuth.findOne({ _id })
+                break;
         
             default:
                 break;
@@ -33,7 +37,7 @@ const getUserAuth = async (req, res) => {
             return
         }
     
-        const { firstName, surname, email, phoneNumber, gender, birth, date } = auth
+        const { firstName, surname, email, phoneNumber, gender, birth, date, avatar, _id } = auth
         const resAuth = {
             firstName,
             surname,
@@ -42,6 +46,8 @@ const getUserAuth = async (req, res) => {
             gender,
             birth,
             date,
+            avatar,
+            _id,
         }
     
         res.status(200).json({ status: 200, message: 'fetch user auth is success', data: resAuth })    
@@ -137,7 +143,7 @@ const updateUserAuth = async (req, res) => {
     try {
         const userId = req.params.userId
         const auth = await UsersAuth.findByIdAndUpdate(userId, req.body, { new: true })
-        console.log(auth)
+        
         if ( auth === null ) {
             res.status(200).json({ status: 404, message: `user id ${userId} not exsist in database`})
             return
@@ -194,4 +200,32 @@ const login = async (req, res) => {
     }
 }
 
-module.exports = { getAllUsersAuth, getUserAuth, postUserAuth, deleteUserAuth, updateUserAuth, login }
+const uploadAvatar = async (req, res) => {
+    try {
+        const _id = req.params.userId
+        
+        const path = `http://localhost:5000/${req.file.destination}/${req.file.filename}`
+        // console.log(path)
+        const auth = await UsersAuth.findOneAndUpdate({ _id }, { avatar: path })
+        console.log(auth)
+        const { firstName, surname, email, phoneNumber, gender, birth, avatar } = auth
+
+        const authSchema = {
+            _id,
+            firstName,
+            surname,
+            email,
+            phoneNumber,
+            gender,
+            birth,
+            avatar,
+        }
+
+        res.status(200).json({ status: 200, message: 'uploaded is successfuly', data: authSchema })
+    } catch (error) {
+        console.log('### Upload Avatar Error ###')
+        console.log(error)
+    }
+}
+
+module.exports = { getAllUsersAuth, getUserAuth, postUserAuth, deleteUserAuth, updateUserAuth, login, uploadAvatar }

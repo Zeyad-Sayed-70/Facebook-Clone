@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const { v4 } = require('uuid')
+const path = require('path')
 
 const userAuthSchema = new Schema({
     firstName: {
@@ -34,6 +35,10 @@ const userAuthSchema = new Schema({
     date: {
         type: Date,
         default: Date.now(),
+    },
+    avatar: {
+        type: String,
+        default: `${path.join(__dirname, '../uploads')}/avatars/userDefault.webp`
     }
 })
 

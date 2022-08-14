@@ -9,7 +9,7 @@ const protectAuth = async (req, res, next) => {
                 const token = authorization.split(' ')[1]
                 
                 jwt.verify(token, process.env.JWT_SECRET, function(err, decoded) {
-                    console.log(decoded)
+                    
                     if ( err ) {
                         console.log('### Not Valid Authorization ###')
                         res.status(200).json({ status: 500, message: 'Not Valid Authorization' })

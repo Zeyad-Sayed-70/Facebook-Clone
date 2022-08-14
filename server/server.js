@@ -10,6 +10,8 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+app.use('/uploads/avatars', express.static('uploads/avatars'))
+
 // use routers
 app.use('/usersAuth', require('./routers/usersAuth'))
 
