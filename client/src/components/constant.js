@@ -1,3 +1,11 @@
+import { AiOutlineHome, AiFillHome, AiOutlineShop } from 'react-icons/ai'
+import { MdOndemandVideo } from 'react-icons/md'
+import { RiGroupLine, RiGroupFill } from 'react-icons/ri'
+import { HiUserGroup, HiOutlineUserGroup } from 'react-icons/hi'
+import { BiUserCircle } from 'react-icons/bi'
+import { BsGear } from 'react-icons/bs'
+
+
 // backend server url
 export const BACKEND_URL = 'http://localhost:5000/'
 
@@ -29,3 +37,83 @@ for ( let i = 1; i <= YEAR_NOW; i++ ) {
 }
 
 birth.year.reverse()
+
+
+// Nav List
+export const navListRes = [
+    {
+        title: 'Profile',
+        href: '/profile',
+        icon: <BiUserCircle />,
+        iconSelected: <BiUserCircle />
+    },
+    {
+        title: 'Home',
+        href: '/',
+        icon: <AiOutlineHome />,
+        iconSelected: <AiFillHome />
+    },
+    {
+        title: 'Friends',
+        href: '#',
+        icon: <RiGroupLine />,
+        iconSelected: <RiGroupFill />
+    },
+    {
+        title: 'Watch',
+        href: '#',
+        icon: <MdOndemandVideo />,
+        iconSelected: <MdOndemandVideo />
+    },
+    {
+        title: 'Market',
+        href: '#',
+        icon: <AiOutlineShop />,
+        iconSelected: <AiOutlineShop />
+    },
+    {
+        title: 'Groups',
+        href: '#',
+        icon: <HiOutlineUserGroup />,
+        iconSelected: <HiUserGroup />
+    },
+    {
+        title: 'Setting',
+        href: '/setting',
+        icon: <BsGear />,
+        iconSelected: <BsGear />
+    }
+]
+
+export const navList = [
+    {
+        title: 'Home',
+        href: '/',
+        icon: <AiOutlineHome />,
+        iconSelected: <AiFillHome />
+    },
+    {
+        title: 'Friends',
+        href: '#',
+        icon: <RiGroupLine />,
+        iconSelected: <RiGroupFill />
+    },
+    {
+        title: 'Watch',
+        href: '#',
+        icon: <MdOndemandVideo />,
+        iconSelected: <MdOndemandVideo />
+    },
+    {
+        title: 'Market',
+        href: '#',
+        icon: <AiOutlineShop />,
+        iconSelected: <AiOutlineShop />
+    },
+    {
+        title: 'Groups',
+        href: '#',
+        icon: <HiOutlineUserGroup />,
+        iconSelected: <HiUserGroup />
+    }
+]

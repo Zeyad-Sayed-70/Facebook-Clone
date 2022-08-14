@@ -9,10 +9,10 @@ const fetchAllUsersAuth = async (token) => {
     })
 }
 
-const fetchUserAuth = async (method, user, token) => {
-    return await axios.get(`${BACKEND_URL}usersAuth?method=${method}&user=${JSON.stringify(user)}`, {
+const fetchUserAuth = async ({method, user, token}) => {
+    return await axios.get(`${BACKEND_URL}usersAuth/user?method=${method}&user=${JSON.stringify(user)}`, {
         headers: {
-            authorization: token
+            authorization: "Bearer " + token
         }
     })
 }
@@ -28,16 +28,22 @@ const deleteUserAuth = async (userId, token) => {
         }
     })}
 
-const updateUserAuth = async (userId, userData, token) => {
+const updateUserAuth = async ({userId, userData, token}) => {
     return await axios.patch(`${BACKEND_URL}usersAuth/${userId}`, userData, {
         headers: {
-            authorization: token
+            authorization: "Bearer " + token
         }
     })}
-
+    
 const loginAuth = async ( userData ) => {
     return await axios.post(`${BACKEND_URL}usersAuth/login`, userData)}
 
+const uploadAvatar = async ({userId, file, token}) => {
+    return await axios.patch(`${BACKEND_URL}usersAuth/upload/avatar/${userId}`, file, {
+        headers: {
+            authorization: "Bearer " + token
+        }
+    })}
 
 
-export default { fetchAllUsersAuth, fetchUserAuth, postUserAuth, deleteUserAuth, updateUserAuth, loginAuth }
+export default { fetchAllUsersAuth, fetchUserAuth, postUserAuth, deleteUserAuth, updateUserAuth, loginAuth, uploadAvatar }
