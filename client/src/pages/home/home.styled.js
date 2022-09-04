@@ -117,9 +117,149 @@ const HomeStyled = styled.div`
             display: none;
         }        
     }
+
+    /* Posts Start */
     .main_sec_2 {
-        flex: 2;
+        width: 50%;
+        padding: 0 3rem;
+        @media (max-width: 991px ) {
+            & {
+                width: 65%;
+                padding: 0 1rem;
+            }
+        }
+        @media (max-width: 767px) { 
+            & {
+                width: 100%;
+            }
+        }
+        .stories {
+            display: flex;
+            color: white;
+            gap: .5rem;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: .5rem 0;
+
+            &::-webkit-scrollbar {
+                background-color: #212529;
+                height: 2px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: #fff;
+            }
+
+            .create {
+                .list_btn {
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    background-color: #242424;
+                    color: #d6d6d6;
+                }
+                p {
+                    margin: 0;
+                    padding: 1.2rem 0;
+                }
+                .addicon {
+                    padding: 0.3rem;
+                    background-color: #242424;
+                    color: #fff;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 168px;
+                    left: 50%;
+                    -webkit-transform: translateX(-50%);
+                    -ms-transform: translateX(-50%);
+                    transform: translateX(-50%);
+                    div {
+                        background-color: #0071e6;
+                        border-radius: 50%;
+                        width: 30px;
+                        height: 30px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        svg {
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+            }
+
+            .list {
+                width: 160px;
+                min-width: 160px;
+                max-width: 160px;
+                /* width: calc((100% / 4) - 0.5rem);
+                min-width: calc((100% / 4) - 0.5rem);
+                max-width: calc((100% / 4) - 0.5rem); */
+                height: 250px;
+                position: relative;
+                display: flex;
+
+                /* @media (min-width: 1590px) {
+                    & {
+                        width: calc((100% / 5) - 0.5rem);
+                        min-width: calc((100% / 5) - 0.5rem);
+                        max-width: calc((100% / 5) - 0.5rem);
+                    }
+                }
+                @media (max-width: 1191px) {
+                    & {
+                        width: calc((100% / 3) - 0.5rem);
+                        min-width: calc((100% / 3) - 0.5rem);
+                        max-width: calc((100% / 3) - 0.5rem);
+                    }
+                }
+                @media (max-width: 991px) {
+                    & {
+                        width: calc((100% / 4) - 0.5rem);
+                        min-width: calc((100% / 4) - 0.5rem);
+                        max-width: calc((100% / 4) - 0.5rem);
+                    }
+                }
+                @media (max-width: 767px) {
+                    & {
+                        width: calc((100% / 2) - 0.5rem);
+                        min-width: calc((100% / 2) - 0.5rem);
+                        max-width: calc((100% / 2) - 0.5rem);
+                    }
+                } */
+                .list_btn {
+                    height: 100%;
+                    padding: 0;
+                    .text_prev {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center center;
+                    user-select: none;
+                }
+                .avatar {
+                    position: absolute;
+                    left: 10px;
+                    top: 10px;
+                    width: 35px;
+                    height: 35px;
+                    z-index: 22;
+                    img {
+                        border-radius: 50%;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        
     }
+    /* Posts End */
+
     .main_sec_3 {
         flex: 1;
     }
@@ -129,6 +269,7 @@ const HomeStyled = styled.div`
         }        
     }
     /* Main End */
+
 `
 
 export default HomeStyled

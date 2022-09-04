@@ -8,9 +8,9 @@ const Avatar = ({ me }) => {
   const [file, setFile] = useState()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
+  // useEffect(() => {
+  //   console.log(data)
+  // }, [data])
 
   const handleUpdate = () => {
     const formData = new FormData()

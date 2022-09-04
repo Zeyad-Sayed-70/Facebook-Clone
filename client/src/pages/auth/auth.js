@@ -6,7 +6,7 @@ import Login from '../../components/auth/Form/Login'
 import Register from '../../components/auth/Form/Register'
 
 const Auth = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false) // for open register dialog (popup)
   
   return (
     <AuthStyled>

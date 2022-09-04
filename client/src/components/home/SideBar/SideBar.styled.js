@@ -19,7 +19,7 @@ const SidebarStyled = styled.div`
         align-items: center;
         border-radius: 8px;
         text-decoration: none;
-        padding: 0 1rem;
+        padding: 2rem 1rem;
         div {
             color: #fff;
             font-size: 2rem;

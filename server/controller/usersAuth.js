@@ -142,13 +142,45 @@ const deleteUserAuth = async (req, res) => {
 const updateUserAuth = async (req, res) => {
     try {
         const userId = req.params.userId
-        const auth = await UsersAuth.findByIdAndUpdate(userId, req.body, { new: true })
+
+        const emailValidate = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+        const phoneNumberValidate = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/g
+
+
+        if ( req.body.email ) {
+            if ( !req.body.email.match(emailValidate) ) {
+                console.log('email not valid')
+                res.status(200).json({ status: 500, message: 'your email is not valid'})
+                return
+            }
+        }
+
+        if ( req.body.phoneNumber ) {
+            if ( !req.body.phoneNumber.match(phoneNumberValidate) ) {
+                console.log('pass not valid')
+                res.status(200).json({ status: 500, message: 'your phone number is not valid'})
+                return
+            }
+        }
+        
+        let auth
+        if ( req.body.password ) {
+            // if user update password
+            // hash password
+            const salt = await bcrypt.genSalt(10)
+            const hash = await bcrypt.hash(req.body.password, salt)
+            
+            auth = await UsersAuth.findByIdAndUpdate(userId, { password: hash }, { new: true })
+        } else {
+            // if user update anything else
+            auth = await UsersAuth.findByIdAndUpdate(userId, req.body, { new: true })
+        }
         
         if ( auth === null ) {
             res.status(200).json({ status: 404, message: `user id ${userId} not exsist in database`})
             return
         }
-    
+
         res.status(200).json({ status: 200, message: 'update user auth is success', data: auth })
     } catch (error) {
         console.log('#### Update Error ####')

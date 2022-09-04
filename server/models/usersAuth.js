@@ -39,6 +39,10 @@ const userAuthSchema = new Schema({
     avatar: {
         type: String,
         default: `${path.join(__dirname, '../uploads')}/avatars/userDefault.webp`
+    },
+    friends: {
+        type: [String],
+        default: [],
     }
 })
 

@@ -44,6 +44,7 @@ const Login = ({setOpen}) => {
   }
 
   useEffect(() => {
+    // when the post success you will redirect to home page => ('/')
     if ( isSuccess && recived ) {
       if ( data.data.status === 200 ) {
           setError(null)

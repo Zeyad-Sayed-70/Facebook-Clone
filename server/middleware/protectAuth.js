@@ -15,6 +15,7 @@ const protectAuth = async (req, res, next) => {
                         res.status(200).json({ status: 500, message: 'Not Valid Authorization' })
                         return
                     }
+                    req.userId = decoded._id
     
                     next()
                 })

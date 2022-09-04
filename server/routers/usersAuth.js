@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { getAllUsersAuth, getUserAuth, postUserAuth, deleteUserAuth, updateUserAuth, login, uploadAvatar } = require('../controller/usersAuth')
 const protectAuth = require('../middleware/protectAuth')
-const multer  = require('multer')
+const { multer } = require('../server')
 const { v4 } = require('uuid')
 const path = require('path')
 

@@ -7,7 +7,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
 import { useDispatch, useSelector } from 'react-redux'
 import { postUserAuth } from "../../../features/auth/authSlice"
+import { useNavigate } from 'react-router'
 
+// handle validate schema with yup
 const yupSchema = yup.object({
     firstName: yup.string().min(2).max(12).required(),
     surname: yup.string().min(2).max(12).required(),
@@ -27,6 +29,7 @@ const Register = ({setOpen}) => {
   const {isLoading, isSuccess, isError, data} = useSelector(state => state.auth)
   const [error, setError] = useState(null)
   const [recived, setRecived] = useState(false)
+  const navigate = useNavigate()
 
   const onSubmit = (data) => {
 
@@ -52,11 +55,13 @@ const Register = ({setOpen}) => {
   }
 
   useEffect(() => {
-    console.log(isLoading, isSuccess, isError, data)
+    // when the post success you will redirect to home page => ('/')
     if ( isSuccess && recived ) {
         if ( data.data.status === 200 ) {
             setError(null)
+            // save your token in localStorage
             localStorage.setItem('token', data.data.token)
+            navigate('/')
             window.location.reload()
         } else {
             setError(data.data.message)

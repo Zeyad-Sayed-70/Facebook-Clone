@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react"
-import { Section, AccountMenu, TemporaryDrawer } from "./Nav.styled"
+import { Section } from "./Nav.styled"
+import AccountMenu from "./components/AccountMenu"
+import NavList from './components/NavListjs'
 import { BiSearch } from 'react-icons/bi'
 import { FiMenu } from 'react-icons/fi'
 import { Link, Tooltip } from "@mui/material"
 import { navList } from '../../../components/constant'
-import { GeneralContext } from '../../../contextAPIs/GeneralContext'
+import { GeneralContext } from "../../../contextAPIs/GeneralContext"
 
 const Nav = () => {
   const { me } = useContext(GeneralContext)
@@ -28,7 +30,7 @@ const Nav = () => {
 
   return (
     <>
-    <TemporaryDrawer state={state} setState={setState} />
+    <NavList state={state} setState={setState} />
     <nav>
         <Section className="nav_sec_1">
             <img src="./favicon.png" alt="facebook logo" />

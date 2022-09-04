@@ -28,9 +28,9 @@ export const postUserAuth = createAsyncThunk('auth/post', async (userData) => {
     }
 })
 
-export const deleteUserAuth = createAsyncThunk('auth/delete', async (userId, token) => {
+export const deleteUserAuth = createAsyncThunk('auth/delete', async (data) => {
     try {
-        return authAPI.deleteUserAuth(userId, token)
+        return authAPI.deleteUserAuth(data)
     } catch (error) {
         console.log("### Delete_User_Auth Error ###")
         console.log(error)

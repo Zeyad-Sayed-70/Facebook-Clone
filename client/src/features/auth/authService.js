@@ -4,7 +4,7 @@ import { BACKEND_URL } from '../../components/constant'
 const fetchAllUsersAuth = async (token) => {
     return await axios.get(BACKEND_URL + "usersAuth", {
         headers: {
-            authorization: token
+            authorization: "Bearer " + token
         }
     })
 }
@@ -21,10 +21,10 @@ const postUserAuth = async (userData) => {
     return await axios.post(BACKEND_URL + "usersAuth", userData)
 }
 
-const deleteUserAuth = async (userId, token) => {
+const deleteUserAuth = async ({userId, token}) => {
     return await axios.delete(`${BACKEND_URL}usersAuth/${userId}`, {
         headers: {
-            authorization: token
+            authorization: "Bearer " + token
         }
     })}
 
